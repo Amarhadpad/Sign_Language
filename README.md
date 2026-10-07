@@ -34,11 +34,12 @@ continuous video. The app uses the checked-in model and labels in `Model/`.
    the `main` branch, and set the app file path to `app.py`.
 4. In **Advanced settings**, select Python 3.11, then deploy.
 
-Streamlit Cloud installs the packages listed in `requirements.txt`; the
-Streamlit and protobuf versions are bounded to remain compatible with
-TensorFlow and MediaPipe. Captured training images and locally trained
-candidate models are not included in the repository; add only a reviewed model
-file if you intend to deploy a different model.
+Streamlit Cloud installs the Python packages in `requirements.txt` and Linux
+system packages in `packages.txt`. The Streamlit and protobuf versions are
+bounded to remain compatible with TensorFlow and MediaPipe. Captured training
+images and locally trained candidate models are not included in the
+repository; add only a reviewed model file if you intend to deploy a different
+model.
 
 ## Collect samples and retrain the seven signs
 
