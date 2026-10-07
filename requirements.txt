@@ -6,3 +6,5 @@ numpy==1.26.4
 opencv-python==4.10.0.84
 opencv-contrib-python==4.10.0.84
 tensorflow==2.15.1
+protobuf>=4.25.3,<5
+streamlit>=1.35,<1.46

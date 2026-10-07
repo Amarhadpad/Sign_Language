@@ -21,6 +21,25 @@ By default it loads `Model/keras_model.h5`. To test a candidate model without
 replacing the current one, set `SIGN_MODEL_PATH` to the candidate file before
 starting the app.
 
+## Deploy a browser app with Streamlit Community Cloud
+
+The repository also includes `app.py`, which supports taking a webcam snapshot
+or uploading a photo for single-image sign recognition. It does not stream
+continuous video. The app uses the checked-in model and labels in `Model/`.
+
+1. Push this project to GitHub.
+2. Open [share.streamlit.io](https://share.streamlit.io/) and sign in with
+   GitHub.
+3. Select **Create app**, choose the `Amarhadpad/Sign_Language` repository and
+   the `main` branch, and set the app file path to `app.py`.
+4. In **Advanced settings**, select Python 3.11, then deploy.
+
+Streamlit Cloud installs the packages listed in `requirements.txt`; the
+Streamlit and protobuf versions are bounded to remain compatible with
+TensorFlow and MediaPipe. Captured training images and locally trained
+candidate models are not included in the repository; add only a reviewed model
+file if you intend to deploy a different model.
+
 ## Collect samples and retrain the seven signs
 
 The project does not include the original training images. Collect new samples
