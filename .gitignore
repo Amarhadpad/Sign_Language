@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+*.py[cod]
+Data/
+Model/keras_model_candidate.h5
+Model/training-*/
