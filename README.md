@@ -78,6 +78,8 @@ The Python app can send each stable recognized sign to an ESP8266 running the
 `esp8266_display/esp8266_display.ino` web-server sketch. Open that sketch in
 the Arduino IDE, install the ESP8266 board support and the `MD_Parola` library,
 and replace `YOUR_WIFI_SSID` and `YOUR_WIFI_PASSWORD` with your Wi-Fi details.
+Upload the updated sketch to the NodeMCU so its webpage provides the
+`/recognized` status endpoint and shows the latest sign in the sign panel.
 Connect the computer and ESP8266 to the same Wi-Fi network. The board prints
 its IP address to the Arduino Serial Monitor at 9600 baud after connecting.
 Open `http://<ESP8266-IP>/` in a browser on the same Wi-Fi network. The page

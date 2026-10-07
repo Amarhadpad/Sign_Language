@@ -41,6 +41,10 @@ select { padding:10px; width:220px; }
 input { padding:10px; width:70%; border-radius:8px; border:none; }
 #transcript { height:250px; overflow:auto; border:1px solid white; margin:10px; padding:10px; text-align:left; }
 #recognizedSign { font-size:2rem; font-weight:bold; min-height:2.5rem; color:#fbbf24; }
+.sign-card { max-width:640px; margin:24px auto; padding:20px; border:1px solid #334155; border-radius:14px; background:#0f172a; }
+.sign-card h3 { margin-top:0; }
+#signStatus { color:#94a3b8; font-size:.9rem; }
+#recognizedSign { overflow-wrap:anywhere; }
 .start { background:#22c55e; }
 .stop { background:#ef4444; }
 .save { background:#3b82f6; }
@@ -80,8 +84,11 @@ input { padding:10px; width:70%; border-radius:8px; border:none; }
 
 <div id="status">Idle</div>
 
-<h3>🤟 Recognized sign</h3>
-<div id="recognizedSign">Waiting for a sign...</div>
+<section class="sign-card" aria-live="polite">
+  <h3>🤟 Latest recognized sign</h3>
+  <div id="recognizedSign">Waiting for a sign...</div>
+  <div id="signStatus">Connecting to the sign recognition service...</div>
+</section>
 
 <div id="transcript"></div>
 
@@ -105,10 +112,14 @@ let ip=window.location.origin;
 async function updateRecognizedSign(){
   try{
     let response=await fetch(ip+"/recognized",{cache:"no-store"});
-    if(!response.ok) throw new Error("HTTP "+response.status);
+    if(!response.ok){
+      document.getElementById("signStatus").innerText="Sign status unavailable (HTTP "+response.status+"). Upload the updated NodeMCU firmware.";
+      return;
+    }
     document.getElementById("recognizedSign").innerText=await response.text();
+    document.getElementById("signStatus").innerText="Connected — updates when a sign is recognized.";
   }catch(error){
-    document.getElementById("recognizedSign").innerText="Waiting for sign recognition...";
+    document.getElementById("signStatus").innerText="Cannot reach the sign status endpoint. Check the NodeMCU firmware and Wi-Fi connection.";
   }
 }
 
